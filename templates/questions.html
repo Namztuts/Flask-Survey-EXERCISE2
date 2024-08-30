@@ -1,0 +1,31 @@
+<!-- extends -->
+{% extends 'base.html' %}
+<!-- block title -->
+{% block title %}Question #{{num}}{% endblock %}
+<!-- block content start-->
+{% block content %}
+<h1>{{question.question}}</h1>
+<form
+   action="/answer"
+   method="POST"
+>
+   <p>
+      {% for choice in question.choices %}
+      <input
+         type="radio"
+         name="answer"
+         value="{{choice}}"
+      />
+      {{choice}} {% endfor %}
+   </p>
+   {% if question.allow_text %}
+   <textarea name="text"></textarea>
+   {% endif %}
+   <!-- If last question, change button to submit -->
+   {% if q == r %}
+   <button>Submit Survey</button>
+   {% else %}
+   <button>Next Question</button>
+   {% endif %}
+</form>
+{% endblock %}

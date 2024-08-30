@@ -1,0 +1,22 @@
+<!-- extends -->
+{% extends 'base.html' %}
+<!-- block title -->
+{% block title %}Thanks!{% endblock %}
+<!-- block content start-->
+{% block content %}
+<h1>Thanks for completing {{survey.title}}</h1>
+<h3>Your Responses:</h3>
+<ul>
+   {% for question in survey.questions %}
+   <li>
+      <b>{{question.question}}</b>
+
+      <p>
+         <!-- loop.index0 | built in Jinja variable | starts at number specified (loop0) -->
+         {{ responses[loop.index0]["choice"] }}
+         <i>{{ responses[loop.index0]["text"] }}</i>
+      </p>
+   </li>
+   {% endfor %}
+</ul>
+{% endblock %}
